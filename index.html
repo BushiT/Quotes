@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Today</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<div class="quote-box">
+    <h2>Quote Of The Day</h2>
+    <blockquote>Loadding...</blockquote>
+    <span>Loading...</span>
+    <div>
+        <button onclick="fet(api_url)">new Quote</button>
+        <button onclick="twt()">Tweet</button>
+    </div>
+</div>
+
+</body>
+
+<script>
+const api_url = "https://api.quotable.io/random";
+const content = document.querySelector("blockquote")
+const author = document.querySelector("span")
+
+async function fet(url){
+   const response = await fetch(url);
+   var data = await response.json();
+   console.log(data);
+  
+   content.textContent = data.content;
+   author.textContent = data.author;
+}
+fet(api_url);
+function twt(){
+    window.open("https://www.facebook.com/" + content.textContent,"Share Window","width=600, height=300");
+}
+</script>
+
+</html>
